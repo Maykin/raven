@@ -56,8 +56,8 @@ class Client(object):
         self.name = name or unicode(defaults.NAME)
         self.auto_log_stacks = auto_log_stacks or bool(defaults.AUTO_LOG_STACKS)
         self.key = key or defaults.KEY
-        self.string_max_length = string_max_length or int(defaults.MAX_LENGTH_STRING)
-        self.list_max_length = list_max_length or int(defaults.MAX_LENGTH_LIST)
+        self.string_max_length = string_max_length if string_max_length is not None else defaults.MAX_LENGTH_STRING
+        self.list_max_length = list_max_length if list_max_length is not None else defaults.LIST_MAX_LENGTH
         self.site = site or unicode(defaults.SITE)
 
     def get_ident(self, result):
