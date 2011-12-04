@@ -80,11 +80,19 @@ class ShortenTest(TestCase):
         self.assertEquals(len(result), 8)
         self.assertEquals(result, 'hello...')
 
+        # Don't shorten on string_length of 0
+        result = shorten('hello world!', string_length=0)
+        self.assertEquals(result, 'hello world!')
+
     def test_shorten_lists(self):
         result = shorten(range(500), list_length=50)
         self.assertEquals(len(result), 52)
         self.assertEquals(result[-2], '...')
         self.assertEquals(result[-1], '(450 more elements)')
+
+        # Don't shorten on list_length of 0
+        result = shorten(range(500), list_length=0)
+        self.assertEquals(len(result), 500)
 
     def test_shorten_sets(self):
         result = shorten(set(range(500)), list_length=50)

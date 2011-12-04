@@ -125,9 +125,11 @@ def to_unicode(value):
 
 def shorten(var, list_length=50, string_length=200):
     var = transform(var)
-    if isinstance(var, basestring) and len(var) > string_length:
+    if (isinstance(var, basestring)
+        and len(var) > string_length and string_length > 0):
         var = var[:string_length] + '...'
-    elif isinstance(var, (list, tuple, set, frozenset)) and len(var) > list_length:
+    elif (isinstance(var, (list, tuple, set, frozenset))
+          and len(var) > list_length and list_length > 0):
         # TODO: we should write a real API for storing some metadata with vars when
         # we get around to doing ref storage
         # TODO: when we finish the above, we should also implement this for dicts
